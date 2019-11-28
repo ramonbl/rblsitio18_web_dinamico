@@ -28,14 +28,14 @@ module.exports = {
   devtool: 'inline-source-map',  //herramienta para los source-maps
 
   devServer: {
-    // publicPath: '/',  //decir dnd están los bundles respecto a la salida (dist)
-    // contentBase: path.join(__dirname, 'dist'), //decir a servidor de donde coger la información. solo para archivos estáticos 
+    publicPath: '/jsDist/',  //decir dnd están los bundles respecto a la salida (dist)
+    contentBase: path.join(__dirname, 'dist'), //decir a servidor de donde coger la información. solo para archivos estáticos 
     compress: true,
     port: 9000,
     // index: 'index.html',  //archivo considerado el índice
     liveReload: true,
     open: true,
-    writeToDisk: false, //si queremos que escriba en disco (en lugar de guardar en cachó haciéndolo más lento)
+    writeToDisk: true, //si queremos que escriba en disco (en lugar de guardar en cachó haciéndolo más lento)
   },
 
   plugins: [
