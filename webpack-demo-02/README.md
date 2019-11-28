@@ -189,9 +189,22 @@ Si la página espera encontrar los archivos de paquete en una ruta diferente, pu
 ```json
 scripts: {"start": "webpack-dev-server --open",}
 ```
-De interés: [(publicPath)](https://webpack.js.org/configuration/dev-server/#devserverpublicpath-)
+
+**[(publicPath)](https://webpack.js.org/configuration/dev-server/#devserverpublicpath-):**
+
+Especifica la ruta base para todos los assets (recursos estáticos) dentro de la aplicación
+
 Lugar de los bundles respecto la salida (generalmente .dist).
-Si los tenemos en `js` -> `publicPath: '/js/'` o `http://localhost:8080/js/`. Por ahora no los tenemos pero lo habitual es que los tenga ahí. 
+
+Cada archivo emitido a su directorio `output.path` será referenciado desde la ubicación `output.publicPath` (incluyendo división de código, imágenes, fuentes que formen parte de su gráfico de dependencia).
+
+- En desarrollo podríamos tener una carpeta `assets/` al mismo nivel de nuestra página de inicio. Es correcto pero que pasaría si quisiéramos alojar todos estos activos estáticos en un CDN en producción?.
+
+
+Normalmente los tendré en `dist/js` siendo la salida `dist`. 
+-> `publicPath: '/js/'` o `http://localhost:8080/js/`. Por ahora no los tenemos pero lo habitual es que los tenga ahí. 
+
+.
 
 ¿¿Habría que añadir publicPath a los recursos que carguemos (css, html,...)?? ¿para el css: publicPath: `'../css/'`??
 

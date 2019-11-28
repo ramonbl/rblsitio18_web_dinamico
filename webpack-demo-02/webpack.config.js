@@ -43,6 +43,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
 
+  //divide los bundles, incluso los que estén compartidos
   optimization: {
     splitChunks: {
       chunks: 'all',
