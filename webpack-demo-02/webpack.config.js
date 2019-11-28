@@ -39,8 +39,8 @@ module.exports = {
   ],
 
   output: {
-    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
   },
 
   //divide los bundles, incluso los que estén compartidos

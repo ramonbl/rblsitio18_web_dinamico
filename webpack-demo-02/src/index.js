@@ -11,10 +11,16 @@ import HTML from './ejemplo.html';
 // función que crea un elemento `<div>` con un contenido de texto
 function component() {
   const element = document.createElement('div');
+  
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.classList.add('hello');
+
+  const myIcon = new Image();
+  myIcon.src = Icon
+  
+  element.appendChild(myIcon);
 
   const btn = document.createElement('button');
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  
   btn.innerHTML = 'Click me and check the console!';
   btn.onclick = printMe;
 
@@ -26,3 +32,4 @@ function component() {
 
 //Este JS principal, cargamos un div con un contenido (procede de la función anterior) en el documento que lo incorporte (en este caso, el `index.html`)
 document.body.appendChild(component());
+
