@@ -3,7 +3,9 @@ import _ from 'lodash'; //es un node_modulo que habíamos instalado
 
 import printMe from './print.js';
 
-import Icon from './assets/icon.png';
+import index from '../views/index.html'
+import Icon from '../assets/icon.png';
+import Icon2 from '../assets/icon2.png';
 
 // import HTML from './ejemplo.html';
 
@@ -21,7 +23,7 @@ function component() {
   element.appendChild(myIcon);
 
   const btn = document.createElement('button');
-  btn.innerHTML = 'Click me and check the console!';
+  btn.innerHTML = 'Click me y chequea la consola2!';
   btn.onclick = printMe;
 
   element.appendChild(btn);
@@ -31,5 +33,5 @@ function component() {
 
 
 //Este JS principal, cargamos un div con un contenido (procede de la función anterior) en el documento que lo incorporte (en este caso, el `index.html`)
-document.body.appendChild(component());
+document.getElementById('main').appendChild(component());
 
