@@ -3,16 +3,16 @@ import _ from 'lodash'; //es un node_modulo que habíamos instalado
 
 import printMe from './print.js';
 
-import Icon from './icon.png';
+import Icon from './assets/icon.png';
 
-import HTML from './ejemplo.html';
+// import HTML from './ejemplo.html';
 
 
 // función que crea un elemento `<div>` con un contenido de texto
 function component() {
   const element = document.createElement('div');
   
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = _.join(['Hellos', 'webpack'], ' ');
   element.classList.add('hello');
 
   const myIcon = new Image();

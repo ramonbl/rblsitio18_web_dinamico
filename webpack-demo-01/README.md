@@ -61,9 +61,18 @@ Más adelante veremos como extraerlo en archivos si es lo que queremos (`minimiz
 
 ## Manejar Imágenes, iconos, backgrounds,... 
 
+
+
+### File-loader
+
 ```bash
 npm i -D file-loader
 ```
+
+Resuelve un `import`/`require()` sobre un archivo en una URL local (mapeada) y emite un archivo al directorio de salida.
+
+
+### Práctica
 Necesitaremos importarlos tb al js `import Icon form '.icon.png` en nuestro `index.js`
 
 Aprovechamos y lo usamos de `background` en el css

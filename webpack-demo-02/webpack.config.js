@@ -8,10 +8,11 @@ module.exports = {
 
   mode: 'development',
 
+  context: __dirname + '/src/',      //directorio en el que tengo los bundless (los demás van respecto al contexto)
   entry: {
-    app: './src/index.js',
-    print: './src/print.js',
-    another: './src/another-module.js',
+    app: './index.js',   //respecto al contexto
+    print: './print.js',
+    another: './another-module.js',
   },
 
   devtool: 'inline-source-map',  //herramienta para los source-maps
@@ -62,9 +63,22 @@ module.exports = {
       },
 
       {
-        test: /\.(png|svg|jpg|gif|html)$/, //manejo de IMÁGEMES con FILE-LOADER
+        test: /\.(png|svg|jpg|gif)$/, //manejo de IMÁGEMES con FILE-LOADER
         use: [
-          'file-loader',
+          {
+            loader: 'file-loader',
+            options: {
+              
+              //ORIGEN
+              context: __dirname + '/src/assets', // contexto para las assets (el path depende del contexto)
+              name : '[path][name].[contenthash].[ext]', // path mantiene estructura es a partir del contexto
+              
+              //DESTINO
+              outputPath: 'assetsDist',       //lugar en el que será reemplazado el target-file
+              publicPath: 'assetsDist/'       //lugar en el server (siempre igual que outputPath?)
+            }
+          }
+          
         ],
       },
 
