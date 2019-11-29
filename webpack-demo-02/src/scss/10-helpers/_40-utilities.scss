@@ -1,1 +1,35 @@
 /* CLASES UTILITARIAS QUE PUEDA USAR EN CUALQUIER ELEMENTO HTML */
+
+/* *************** init # CLASES UTILITARIAS *************** 
+Usables en cualquieR elemento HTML
+*/
+// #region # CLASES UTILITARIAS ...
+
+
+/* *************** init # RESPONSIVE DESIGN CON GRID Y FLEXBOX *************** 
+CLASE QUE APLICADA AL PADRE, SUS ELEMENTOS HIJOS SE ALINEAN CON GRID
+*/
+// #region # RESPONSIVE DESIGN CON GRID Y FLEXBOX ...
+
+
+//Genero tantas columnas como hijos tenga el contenedor dinámicamente con un mínimo de 200px y el máximo el espacio sobrane disponible.
+.u-responsiveGrid {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+//Contenedor envuelve a los hijos y, sus hijos, se alinean con el mismo crecimiento y reducción y que como mínimo mida 200px;
+.u-responsiveFlexbox{
+display: flex;
+flex-wrap: wrap;
+
+& > * {
+  flex: 1 1 200px;
+}
+}
+// #endregion # RESPONSIVE DESIGN CON GRID Y FLEXBOX
+
+
+
+// #endregion # CLASES UTILITARIAS

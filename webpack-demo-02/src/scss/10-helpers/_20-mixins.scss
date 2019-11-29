@@ -1,0 +1,35 @@
+
+/* *************** init # MIXINS *************** */
+// #region # MIXINS ...
+
+/* *************** mixin MQ (Media-Query) ***************
+- En función del mapa $bp de (10-variables)
+Si necesitamos un nuevo punto de rotura, podemos crearlo tras la función con:
+  @include mq(<nuevo_punto de rotura>) { <CSS_punto_rotura> }
+*/
+
+@mixin mq($bp) {
+  @if map-has-key($breakpoints, $bp) {
+    @media screen and (min-width: map-get($breakpoints, $bp)) {
+      @content;
+    }
+
+    //si no hay lo puedo crear con un posterior include (por si elemento da problemas en algún punto de rotura no especificado todavía)
+  } @else {
+    @media screen and (min-width: $bp) {
+      @content;
+    }
+  }
+}
+//@include mq(<500px>) { CSS } // si hay algún problema con los componentes en ese punto
+
+
+/* *************** mixin OTRO ***************
+
+*/
+
+
+
+// #endregion # MIXINS
+
+
