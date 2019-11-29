@@ -1,25 +1,43 @@
-/* Importamos librería necesaria para poder leer el `_.join...` */
-import _ from 'lodash'; //es un node_modulo que habíamos instalado
 
-import printMe from './print.js';
+//IMPORTACIONES
+//--------------
 
+
+//IMPORTACIÓN DE NODE_MODULES 
+import _ from 'lodash'; //para poder leer `_.join...`
+
+//IMPORTACIÓN DE MÓDULOS
+import printMe from './modules/print.js';
+import { module01 } from './modules/module01.js';
+
+//IMPORTACIÓN HTML
 import index from '../views/index.html'
-import Icon from '../assets/icon.png';
-import Icon2 from '../assets/icon2.png';
 
-// import HTML from './ejemplo.html';
+//IMPORTACIÓN IMÁGENES
+import Icon from '../assets/img/icon.png';
+import Icon2 from '../assets/img/icon2.png';
+import Icon1_blog from '../assets/img/blog/icon1-blog.png';
 
 
-// función que crea un elemento `<div>` con un contenido de texto
+//FUNCIONES
+//-----------
+
+//FUNCIÓN component(): crea un elemento `<div>` con un contenido de texto
 function component() {
   const element = document.createElement('div');
-  
-  element.innerHTML = _.join(['Hellos', 'webpack'], ' ');
-  element.classList.add('hello');
+ 
+  const h2 = document.createElement('h2');
+  h2.innerHTML = _.join(['Sección generada en JS en el index.js']);
+  h2.classList.add('hello');
+  element.appendChild(h2);
+
+  const p = document.createElement('p');
+  p.innerHTML = _.join(['Esto es un párrafo generado en index.js']);
+  p.classList.add('hello');
+  element.appendChild(p);
 
   const myIcon = new Image();
   myIcon.src = Icon
-  
   element.appendChild(myIcon);
 
   const btn = document.createElement('button');
@@ -31,6 +49,21 @@ function component() {
   return element;
 }
 
+//FUNCIÓN MiValidateEmail(correo)
+function miValidateEmail(correo){
+  let validado = module01.validateEmail(correo);
+  console.log(validado);
+  if (validado===true) {
+    return "El email es correcto";
+  }
+  else return "El email no es correcto";
+}
+
+//OUPUT
+//-----------
+console.log(module01.pi);  //3.14
+console.log(module01.e);  //2.71828
+console.log(module01.log2);  //0.301029995663981
 
 //Este JS principal, cargamos un div con un contenido (procede de la función anterior) en el documento que lo incorporte (en este caso, el `index.html`)
 document.getElementById('main').appendChild(component());
