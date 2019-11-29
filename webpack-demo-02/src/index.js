@@ -7,16 +7,19 @@
 import _ from 'lodash'; //para poder leer `_.join...`
 
 //IMPORTACIÓN DE MÓDULOS
-import printMe from './modules/print.js';
-import { module01 } from './modules/module01.js';
+import printMe from './js/modules/print.js';
+import { module01 } from './js/modules/module01.js';
 
 //IMPORTACIÓN HTML
-import index from '../views/index.html'
+import index from './views/index.html'
+
+//IMPORTACIÓN SCSS
+import main from './scss/main.scss'
 
 //IMPORTACIÓN IMÁGENES
-import Icon from '../assets/img/icon.png';
-import Icon2 from '../assets/img/icon2.png';
-import Icon1_blog from '../assets/img/blog/icon1-blog.png';
+import Icon from './assets/img/icon.png';
+import Icon2 from './assets/img/icon2.png';
+import Icon1_blog from './assets/img/blog/icon1-blog.png';
 
 
 //FUNCIONES

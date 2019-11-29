@@ -1,0 +1,50 @@
+/* DESCOMENTAR PARA COMPROBAR QUE EL ARCHIVO FUNCIONA */
+// @import "../../snippets/comprobar-archivo-funciona.scss";
+
+
+/* NUEVO CÓDIGO
+-------------------------------------------- 
+Código para este proyecto
+-------------------------------------------- */
+
+*, *:before, *:after {  box-sizing: border-box;} 
+
+body {
+  margin      : 0;
+  font-family : sans-serif;
+}
+
+// Imágenes responsive: crecen con el contenido y evitan espacio en blanco
+img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration : none;
+  
+  &:hover { text-decoration : underline }
+}
+
+p:empty{ /* Muy interesante para que elimine los párrafos vacíos. */
+  padding: 0;  background:red
+}
+
+/* pre {
+  white-space: pre-wrap;
+}  */
+/* end NUEVO CÖDIGO  */
+
+
+/* PREVIOUS CODE
+--------------------------------------------
+Código del proyecto anterior
+--------------------------------------------*/
+
+
+/* end PREVIOUS CODE   */
+
+
+
+

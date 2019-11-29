@@ -6,42 +6,40 @@ var glob = require('glob')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
-
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
 
   mode: 'development',
 
   //CONTEXT: Ruta absoluta con el directorio base para resolver los ENTRYs y LOADERs desde la configuración
-  context: path.resolve(__dirname, 'src/js'),   //elijo el que tengo los bundless
+  // (-) context: path.resolve(__dirname, 'src'),   //elijo el que tengo los bundless principales
 
   //ENTRYs: Puntos en los que empezar el proceso de empaquetamiento respecto al `context`
   entry: {
-    index: './index.js',
-    // print: './print.js',
-    // another: './another-module.js',
+    index: './src/index.js',
   },
 
   //OUTPUTs: Indican cómo y dónde generar los bundlets y assets asociados
   output: {
-    path: path.resolve(__dirname, 'dist/jsDist'),
-    filename: '[name].bundle.js',
+    // (-) path: path.resolve(__dirname, 'dist/jsDist'),
+    filename: '[name].[chunkhash].js',
 
-    publicPath: '/jsDist/'
+    // publicPath: '/jsDist/'
   },
 
   //HERRAMIENTAS
-  devtool: 'inline-source-map',  //herramienta para los source-maps
+  devtool: 'source-map',  //herramienta para los source-maps
 
-  devServer: {
-    publicPath: '/jsDist/',  //decir dnd están los bundles respecto a la salida (dist)
-    contentBase: path.join(__dirname, 'dist'), //decir a servidor de donde coger la información. solo para archivos estáticos 
-    compress: true,
+  devServer: { // (-)
+    // (-) publicPath: '/jsDist/',  //decir dnd están los bundles respecto a la salida (dist)
+    // contentBase: path.join(__dirname, 'dist'), //decir a servidor de donde coger la información. solo para archivos estáticos 
+    // compress: true,
     port: 9000,
-    index: 'index.html',  //archivo considerado el índice
-    liveReload: true,
-    open: true,
-    writeToDisk: true, //si queremos que escriba en disco (en lugar de guardar en cachó haciéndolo más lento)
+    // index: 'index.html',  //archivo considerado el índice
+    // liveReload: true,
+    // open: true,
+    // writeToDisk: true, //si queremos que escriba en disco (en lugar de guardar en cachó haciéndolo más lento)
   },
 
 
@@ -63,194 +61,193 @@ module.exports = {
         loader: 'babel-loader',
       },
 
-      //TPL-HTML ->
+      //TPL-HTML -> ES6-TEMPLATE-STRING: llamar a html desde html, trabajar con las template-string de JS para poder interpolar variables, valores y cadenas estáticas
       {
-        test: /\.tpl.html$/,
+        test: /\.tpl.html$/,  //serán como los partials. Así Wpack no se confunde con los html
         use: [
           {
             loader: 'es6-template-string'
-
           }
         ]
       },
 
-      //HTML-LOADER
+      // (-) HTML-> FILE-LOADER 
       {
-        // test: /\.html$/,
+        // test: /\.html$/, //manejo de HTML con FILE-LOADER
         // use: [
         //   {
-        //     loader: 'html-loader',
+        //     loader: 'file-loader',
         //     options: {
-        //       minimize: true
+
+        //       //FILE-LOADER.CONTEXT
+        //       context: path.resolve(__dirname, 'src/views'), // contexto para las assets (el path depende del contexto)
+
+        //       //DESTINO
+        //       outputPath: '../',       //lugar de reemplazo respecto OUTPUT.PATH
+        //       name: '[path][name].[ext]', // path mantiene estructura respecto FILE-LOADER.CONTEXT
+        //       publicPath: '.'       //lugar en el server/navegador respecto '/' (siempre igual que outputPath?)
         //     }
         //   }
-        // ]
-      },
-      //CSS-LOADERS
-      {
-        // test: /\.(css|scss)$/,     //exp_reg identifica CSS para los CSS-LOADER
-        // use: [
-        //   'style-loader',
-        //   {
-        //     loader: MiniCssExtractPlugin.loader,
-        //     options: {
-        //       minimize: true,
-        //       sourceMap: true,
-        //     }
-        //   },
 
-        //   {
-        //     loader: 'postcss-loader',
-        //     options: {
-        //       autoprefixer: {
-        //         browser: ['last 2 versions']
-        //       },
-        //       sourceMap: true,
-        //       plugins: () => [autoprefixer]
-        //     }
-        //   },
-
-        //   'css-loader',  //primer loader
-        //   'resolve-url-loader',
-        //   {
-        //     loader: 'sass-loader',
-        //     options: {
-        //       outputStyle: compressed,
-        //       sourceMap: true
-        //     }
-        //   }
         // ],
       },
 
-      //IMÁGENES-> FILE-LOADER
+      //HTML-LOADER
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              // minimize: true
+            }
+          }
+        ]
+      },
+
+      //CSS-LOADERS
+      {
+        test: /\.(css|scss)$/,     //exp_reg identifica CSS para los CSS-LOADER
+        use: [
+
+          //STYLE-LOADER
+          'style-loader',
+
+          //MINI-CSS-EXTRAC-PLUGIN
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // minimize: true,
+              sourceMap: true,
+            }
+          },
+
+          //CSS-LOADER
+          {
+            loader: 'css-loader',
+            options: {
+              // minimize: true, 
+              sourceMap: true,
+            }
+          },
+
+          //POSTCSS-LOADER
+          {
+            loader: 'postcss-loader',
+            options: {
+              autoprefixer: {
+                browser: ['last 2 versions']
+              },
+              sourceMap: true,
+              plugins: () => [autoprefixer]
+            }
+          },
+
+
+          //RESOLVE-URL-LOADER
+          'resolve-url-loader',
+
+          //SASS-LOADER
+          {
+            loader: 'sass-loader',
+            options: {
+              // outputStyle: 'compressed',
+              sourceMap: true
+            }
+          }
+        ],
+      },
+
+      //IMÁGENES-> FILE-LOADER, (NO IMAGE-WEBPACK-LOADER)
       {
         test: /\.(png|svg|jpe?g|gif|svg|webp)$/, //manejo de IMÁGEMES con FILE-LOADER
         use: [
+          //FILE-LOADER
           {
             loader: 'file-loader',
             options: {
 
               //FILE-LOADER.CONTEXT
-              context: path.resolve(__dirname, 'src/assets/img'), // contexto para las assets (el path depende del contexto)
+              // (-) context: path.resolve(__dirname, 'src/assets/img'), // contexto para las assets (el path depende del contexto)
 
               //DESTINO
-              outputPath: '../assetsDist/imgDist',       //lugar de reemplazo respecto OUTPUT.PATH 
-              name: '[path][name].[ext]', // path mantiene estructura respecto FILE-LOADER.CONTEXT
-              publicPath: 'assetsDist/imgDist/'       //lugar en el server/navegador respecto '/' (siempre igual que outputPath?)
+              // (-) outputPath: '../assetsDist/imgDist',       //lugar de reemplazo respecto OUTPUT.PATH 
+              // (-) name: '[path][name].[ext]', // path mantiene estructura respecto FILE-LOADER.CONTEXT
+              name: 'assets/[name].[ext]',
+              // (-) publicPath: 'assetsDist/imgDist/'       //lugar en el server/navegador respecto '/
             }
           },
 
+          // IMAGE-WEBPACK-LOADER
           // {
           //   loader: 'image-webpack-loader',
           //   options: {
           //     bypassOnDebug: true
           //   }
           // }
-
         ],
       },
 
-      //HTML-> FILE-LOADER
+
+
+      //FONTS + MEDIA + DOCS -> FILE-LOADER
       {
-        test: /\.html$/, //manejo de HTML con FILE-LOADER
+        test: /\.(woff|woff2|eot|ttf|otf|mp4|mp3|txt|xml|pdf)$/, 
         use: [
           {
             loader: 'file-loader',
             options: {
-
-              //FILE-LOADER.CONTEXT
-              context: path.resolve(__dirname, 'src/views'), // contexto para las assets (el path depende del contexto)
-
-              //DESTINO
-              outputPath: '../',       //lugar de reemplazo respecto OUTPUT.PATH
-              name: '[path][name].[ext]', // path mantiene estructura respecto FILE-LOADER.CONTEXT
-              publicPath: '.'       //lugar en el server/navegador respecto '/' (siempre igual que outputPath?)
-            }
-          }
-
-        ],
-      },
-
-      //FONTS -> FILE-LOADER
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,  //manejo de FUENTES con FILE-LOADER
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-
+              name: 'assets/[name].[ext]'
             }
           },
         ],
       },
 
-      //CSV-LOADER
+      // (-) CSV-LOADER
       {
-        test: /\.(csv|tsv)$/,   //manejo de CSV con CSV-LOADER
-        use: [
-          'csv-loader',
-        ],
+        // test: /\.(csv|tsv)$/,   //manejo de CSV con CSV-LOADER
+        // use: [
+        //   'csv-loader',
+        // ],
       },
 
-      //XML-LOADER
+      // (-) XML-LOADER
       {
-        test: /\.xml$/,       //manejo de XML con XML-LOADER
-        use: [
-          'xml-loader',
-        ],
+        // test: /\.xml$/,       //manejo de XML con XML-LOADER
+        // use: [
+        //   'xml-loader',
+        // ],
       },
 
-      //TXT, PDF -> FILE-LOADER
-      {
-        test: /\.(txt,pdf)$/,       //manejo de TXT con FILE-LOADER
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-
-            }
-          },
-        ]
-      },
-
-      //MP4, MP3 -> FILE-LOADER
-      {
-        test: /\.(mp4|mp3)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[path][name].[ext]',
-            }
-          }
-        ]
-      },
-
+      
 
     ],
   },
   //PLUGINS
-  plugins: [ //HTML-WEBPACK-PLUGIN, MINI-CSS-EXTRACT-PLUGIN
-    
+  plugins: [ 
+
+    //CLEAN-WEBPACK-PLUGIN
+    // new CleanWebpackPlugin(['dist/**/*.*']),
+
+    //MINI-CSS-EXTRACT-PLUGIN
     new MiniCssExtractPlugin({
-      // filename: '[name].css'
-    })
-     //HTML-WEBPACK-PLUGIN
-    // new HtmlWebpackPlugin({
-    //   template: './src/views/template.html',
-    //   filename: 'index.html',    //de salida. por defecto es ese
-    //   hash: true,    //genera un hash
-    //   chunks: ['js'],
-    //   minify: {
-    //     html5: true,
-    //     collapseWhitespace: true,
-    //     caseSensitive: true,
-    //     removeComments: true
-    //   },
-    //   templateParameters: {
-    //     titulo: 'Manual de Webpack',
-    //     encabezamiento: ' Aprendo Webpack'
-    //   }
-    // }),
+      filename: '[name].[chunkhash].css',
+      chunkFilename: '[id].css'
+    }),
+
+    //HTML-WEBPACK-PLUGIN (solo una instancia xq solo tengo una entrada)
+    new HtmlWebpackPlugin({
+      template: './src/template.html',
+      filename: 'index.html', 
+    //   (-) hash: true,    //genera un hash
+      chunks: ['js'],
+      minify: {
+        html5: true,  //sigue especificación html5
+        collapseWhitespace: true,
+        caseSensitive: true,
+        removeComments: false
+      },
+    // (-) templateParameters: {titulo: 'Manual de Webpack',encabezamiento: 'Aprendo Webpack'}
+    }),
   ],
 }

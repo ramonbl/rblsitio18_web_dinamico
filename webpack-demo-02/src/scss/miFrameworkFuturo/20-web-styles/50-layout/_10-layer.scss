@@ -1,0 +1,43 @@
+/* DESCOMENTAR PARA COMPROBAR QUE EL ARCHIVO FUNCIONA */
+// @import "../../snippets/comprobar-archivo-funciona.scss";
+
+
+/* NUEVO CÓDIGO
+-------------------------------------------- 
+[Una Introducción a los Mapas Sass: Uso y Ejemplos](https://webdesign.tutsplus.com/es/tutorials/an-introduction-to-sass-maps-usage-and-examples--cms-22184)
+-------------------------------------------- */
+
+
+/* end NUEVO CÖDIGO  */
+
+
+/* PREVIOUS CODE
+--------------------------------------------
+Código del proyecto anterior
+--------------------------------------------*/
+
+
+/* end PREVIOUS CODE   */
+
+/// Función que devuelve la llave de un mapa de capas
+/// Útil para controlar el z-index.
+@function layer($selector) {
+  @if map-has-key($rbl-layer, $selector) {
+    @return map-get($rbl-layer, $selector);  
+  }
+   
+  @warn "The selector #{$selector} is not in the map ’$rbl-layer’";
+  @return null;
+};
+
+
+.rbl-tooltip{
+  z-index: layer(rbl-tooltip);
+}
+
+.rbl-dropdown{
+  z-index: layer(rbl-dropdown);
+}
+
+
+

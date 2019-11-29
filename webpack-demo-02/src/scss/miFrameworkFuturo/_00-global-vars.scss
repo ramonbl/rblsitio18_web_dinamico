@@ -1,0 +1,59 @@
+/* DESCOMENTAR PARA COMPROBAR QUE EL ARCHIVO FUNCIONA */
+// body{border: 10px solid black;}
+
+/* VARIABLES PARA PODER USAR EN EL SCSS DE LA LIBRERÍA Y DEL WEBSITE 
+   --------------------------------------------------------------  */
+/* Variables COLORES (de todo) en: `web-styles/30-theme/-10-colors.scss` */
+$rbl-color--prim: #ee6e73;
+$rbl-color--prim-hover: #f5a5a8;
+
+$rbl-color--alt: #26a69a;
+$rbl-color--alt-hover: #2bbbad;
+
+$rbl-color--white: #fff;
+
+$rbl-color--toc: #a8a8a8;
+$rbl-color--subtitle: #ee6e73;
+$rbl-color--border: rgba(0, 0, 0, 0.14);
+
+/* variables ICONOS: `web-styles/base/_icons` */
+/* variables BOTONES: `web-styles/componentes/_10-buttons` */
+
+
+$materialize-width-side-nav: 300px;
+$rbl-width-side-nav: 270px;
+
+/* Para controlar los z-index de las siguientes selectores 
+Ir a: `web-styles/50-includes/_10-layer.scss`
+*/
+$rbl-layer: (
+  rbl-dropdown: 10,
+  rbl-tooltip: 15
+);
+
+$rbl-l_unit: 0.5rem !default;
+$rbl-rbl-gap: $rbl-l_unit * 4;
+/*  CAMBIAR EL SCSS DE DE GHPAGES-MATERIALIZE REEMPLAZANDO:
+ * 1. Ver al final
+
+*/
+$rbl-breakpoints: (
+  s: 0,
+  m: 601px,
+  l: 993px,
+  xl:1201px
+) !default;
+
+$rbl-sizes: map-keys($rbl-breakpoints); // s, m, l, xl
+
+$rbl-prototype: true !default;
+
+$rbl-max-width: 100% !default;
+$rbl-max-width-container: 1280px;
+
+$rbl-l_unit: 0.5rem !default;
+$rbl-gap: $rbl-l_unit * 4 !default; // 2rem
+
+
+
+

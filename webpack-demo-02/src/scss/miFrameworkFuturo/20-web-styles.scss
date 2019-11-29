@@ -1,0 +1,12 @@
+/* este ARCHIVO NO SE COMPILA para PRODUCCIÓN para evitar triplicar el _00-global_vars.scss en el styles.css
+SÍ se COMPILA para DESARROLLO en src/css/20-web-stiles.css
+*/
+
+@import "_00-global-vars.scss";
+/* IMPORTACIÓN FRAMEWORK CSS UTILIZADO 
+   -------------------------------------- */
+@import "20-web-styles/web-styles.scss";
+
+// .gulp{
+//   color: red;
+// }

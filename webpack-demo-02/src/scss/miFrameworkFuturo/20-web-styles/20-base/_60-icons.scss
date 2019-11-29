@@ -1,0 +1,26 @@
+/* DESCOMENTAR PARA COMPROBAR QUE EL ARCHIVO FUNCIONA */
+// @import "../../snippets/comprobar-archivo-funciona.scss";
+
+
+/* NUEVO CÓDIGO
+-------------------------------------------- 
+[Una Introducción a los Mapas Sass: Uso y Ejemplos](https://webdesign.tutsplus.com/es/tutorials/an-introduction-to-sass-maps-usage-and-examples--cms-22184)
+-------------------------------------------- */
+
+// $rbl-icons: (
+//   tipo1: content-valor1,
+//   tipo2: content-valor2,
+// );
+
+@each $tipo, $valor in $rbl-icons{
+  .rbl-icon--#{$tipo} {
+    content: $valor;
+  }
+}
+
+/* end NUEVO CÖDIGO  */
+
+
+
+
+

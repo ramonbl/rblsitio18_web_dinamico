@@ -1,0 +1,75 @@
+/* DESCOMENTAR PARA COMPROBAR QUE EL ARCHIVO FUNCIONA */
+// @import "../../snippets/comprobar-archivo-funciona.scss";
+
+
+/* NUEVO CÓDIGO
+-------------------------------------------- 
+Código para este proyecto
+-------------------------------------------- */
+
+// $bp: (
+//   s: 601px,
+//   m: 992px,
+//   l: 1201px,
+//   xl: 1260px
+// );
+
+// .col {
+//   width: 100%;
+// }
+
+// /* RESPONSIVE movil:  */
+// @for $i from 1 through 20 {
+//   .col-#{$i*5} {
+//     width: $i * 5%;
+//   }
+// }
+
+// /* RESPONSIVE: s (small) */
+// @media screen and (min-width: map-get($bp,s)) {
+//   @for $i from 1 through 20 {
+//     .col-s-#{$i*5} {
+//       width: $i * 5%;
+//     }
+//   }
+// }
+// /* RESPONSIVE: m (medium) */
+// @media screen and (min-width: map-get($bp,m)) {
+//   @for $i from 1 through 20 {
+//     .col-m-#{$i*5} {
+//       width: $i * 5%;
+//     }
+//   }
+// }
+
+// /* RESPONSIVE: l (large) */
+// @media screen and (min-width: map-get($bp,l)) {
+//   @for $i from 1 through 20 {
+//     .col-l-#{$i*5} {
+//       width: $i * 5%;
+//     }
+//   }
+// }
+
+// /* RESPONSIVE: xl (extra-large) */
+// @media screen and (min-width: map-get($bp,xl)) {
+//   @for $i from 1 through 20 {
+//     .col-xl-#{$i*5} {
+//       width: $i * 5%;
+//     }
+//   }
+// }
+/* end NUEVO CÖDIGO  */
+
+
+/* PREVIOUS CODE
+--------------------------------------------
+Código del proyecto anterior
+--------------------------------------------*/
+
+
+/* end PREVIOUS CODE   */
+
+
+
+

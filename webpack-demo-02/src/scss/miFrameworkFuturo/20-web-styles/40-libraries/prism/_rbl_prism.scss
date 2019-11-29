@@ -1,0 +1,60 @@
+pre[rel]::before {
+  font-size: 1em;
+  font-weight: bold;
+  content: attr(rel);
+  color: blue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: grey;
+  padding: .5em 0;
+  text-indent: 1rem;
+  margin-bottom: .5em;
+}
+
+pre[rel="CSS"]::before, pre[rel="SCSS"]::before {
+  color: white;
+  background: blue;
+}
+
+pre[rel="HTML"]::before, pre[rel="PUG"]::before {
+  color: white;
+  background: darkorange;
+}
+
+pre[rel="jQuery"]::before, pre[rel="JavaScript"]::before, pre[rel="JSX"]::before {
+  color: white;
+  background: darkorange;
+}
+
+
+
+
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 3em 0 1em 0;
+}
+
+.line-highlight {
+	margin-top: 3em; /* Same as .prism’s padding-top */
+}
+
+/* Separate line b/c rules are thrown out if selector is invalid.
+   IE11 and old Edge versions don't support :focus-within. */
+ 
+  
+  div.code-toolbar > .toolbar a,
+  div.code-toolbar > .toolbar button,
+  div.code-toolbar > .toolbar span {
+    color: white;
+    font-size: .8em;
+    font-weight: bold;
+    padding: 0 .5em;
+    background: black;
+    // background: rgba(224, 224, 224, 0.2);
+
+  }
+  
+

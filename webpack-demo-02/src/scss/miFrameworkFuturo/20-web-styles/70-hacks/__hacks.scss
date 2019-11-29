@@ -1,0 +1,266 @@
+/* DESCOMENTAR PARA COMPROBAR QUE EL ARCHIVO FUNCIONA */
+// @import "../../snippets/comprobar-archivo-funciona.scss";
+
+
+/* NUEVO CÓDIGO
+-------------------------------------------- 
+Código para este proyecto
+-------------------------------------------- */
+
+#ramonbl{
+
+// min-width: 800px;
+}
+
+.section_rbl {
+  // background: green;
+  padding: 0;
+  margin: 0;
+
+  .rbl_container {
+    // background: lightgreen;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+
+    .rbl_item {
+      // background-color: lightblue;
+      // border: 1px solid black;
+      // height: 100%;
+      // width: 100%;
+      // padding: 0 .5em;
+
+      // width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+      align-items: stretch;
+      .rbl_item__header {
+        // background-color: lightgreen;
+        width: 100%;
+        // height: 520%;
+      }
+
+      .rbl_item__main {
+        // background-color: lightslategrey;
+        padding: 0 .5em;
+        // flex-basis: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex-grow: 2;
+      }
+      .rbl_item__footer{
+        // background-color: lightslategrey;
+        padding: 0 ;
+        // flex-basis: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+    }
+  }
+}
+
+.s12{
+width: 100%;
+flex-basis: 100%;
+}
+
+@media only screen and (min-width: 601px) {
+// body{
+//   background-color: lightblue;
+// }
+
+.m4{
+  width: 33.33%;
+  flex-basis: 33.33%;
+}
+.m6{
+  width: 50%;
+flex-basis: 50%;
+}
+}
+
+@media only screen and (min-width: 1201px) {
+// body{
+//   background-color: lightblue;
+// }
+
+.xl4{
+  flex-basis: 33.33%;
+  width: 33.33%;}
+.xl6{
+  flex-basis: 50%;
+  width: 50%;}
+}
+
+
+.cv {
+  // width: 100%;
+
+  .material-icons {
+    margin: 2rem 0;
+    color: var(--color);
+    font-size: 7rem;
+    display: block;
+  }
+
+  .cv__caption {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+
+  .cv__example {
+    overflow: hidden;
+  }
+}
+
+.center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.container {
+  width: 98%;
+  // background-color: lightgrey;
+
+  @media only screen and (min-width: 601px) {
+    // background-color: lightcoral;
+    width: 95%;
+  }
+
+  @media only screen and (min-width: 993px) {
+// background-color: lightgreen;
+      width: 90%
+
+  }
+}
+
+
+
+@media only screen and (min-width: 601px) {
+  main>.container,
+  body>.page-footer>.container,
+  .top-nav>.container,
+  #index-banner>.container,
+  .github-commit>.container {
+    width: 99.5%
+  }
+}
+
+.row{
+  // background-color: lightblue;
+  .col{
+    // padding: .5rem;
+    // border: 2px solid red;
+  }
+}
+
+
+main{
+  border: 1px solid black;
+  padding-left: 270px;
+}
+
+@media only screen and (max-width: 992px) {
+  main{
+    padding-left: 0
+  }
+}
+
+.toc {
+  // border: 1px solid red;
+}
+
+/* end NUEVO CÖDIGO  */
+
+
+/* PREVIOUS CODE
+--------------------------------------------
+Código del proyecto anterior
+--------------------------------------------*/
+
+
+/* end PREVIOUS CODE   */
+
+
+
+/* importante para que el footer se asiente abajo */
+
+
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+main {
+  flex: 1 0 auto;
+}
+
+/* CAMBIOS QUE NO AFECTAN AL MAIN */
+.rbl{
+  & a{
+    display: block;
+    padding: .5em;
+  }
+  
+  & .nav_horizontal{
+    &>li {
+      display: inline-block;
+      
+    }
+  }
+}
+/* Clases para marcar elementos */
+
+.rbl-grey{
+  border: 2px solid grey;
+  background-color: lightgrey;
+}
+.rbl-red{
+  border: 2px solid red;
+  background-color: lightgrey;
+}
+
+.rbl-green{
+  border: 5px solid green;
+  background-color: lightgreen;
+}
+
+.rbl-blue{
+  border: 2px solid blue;
+  background-color: lightblue;
+}
+
+.color--prim{
+  color: white;
+  background-color: blue;
+}
+
+.test{
+  padding-bottom: 100%;
+  // height: 0;
+}
+
+
+// .gulp{
+//   color: red;
+// }
