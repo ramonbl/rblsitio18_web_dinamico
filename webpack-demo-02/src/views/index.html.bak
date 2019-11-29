@@ -11,7 +11,7 @@
 <body>
   <h1>index.html</h1>
 
-  <h2>Sección procedentes del index.html</h2>
+  <h2>Sección procedente2 del index.html</h2>
 
   <!-- (-) <img src="assetsDist/imgDist/icon2.png" alt=""> -->
   <img src="../assets/img/icon2.png" alt="">

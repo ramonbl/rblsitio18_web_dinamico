@@ -6,7 +6,7 @@ var glob = require('glob')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+// const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
 
@@ -31,16 +31,17 @@ module.exports = {
   //HERRAMIENTAS
   devtool: 'source-map',  //herramienta para los source-maps
 
-  devServer: { // (-)
-    // (-) publicPath: '/jsDist/',  //decir dnd están los bundles respecto a la salida (dist)
-    // contentBase: path.join(__dirname, 'dist'), //decir a servidor de donde coger la información. solo para archivos estáticos 
-    // compress: true,
-    port: 9000,
-    // index: 'index.html',  //archivo considerado el índice
-    // liveReload: true,
-    // open: true,
-    // writeToDisk: true, //si queremos que escriba en disco (en lugar de guardar en cachó haciéndolo más lento)
-  },
+  // devServer: { // (-)
+  //   // (-) publicPath: '/jsDist/',  //decir dnd están los bundles respecto a la salida (dist)
+  //   // publicPath: '/', 
+  //   // contentBase: path.join(__dirname, 'dist'), //decir a servidor de donde coger la información. solo para archivos estáticos 
+  //   // compress: true,
+  //   port: 9000,
+  //   // index: 'index.html',  //archivo considerado el índice
+  //   liveReload: true,
+  //   // open: true,
+  //   // writeToDisk: true, //si queremos que escriba en disco (en lugar de guardar en cachó haciéndolo más lento)
+  // },
 
 
 
@@ -57,7 +58,7 @@ module.exports = {
       //BABEL-LOADER
       {
         test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
       },
 
@@ -99,7 +100,7 @@ module.exports = {
           {
             loader: 'html-loader',
             options: {
-              // minimize: true
+              minimize: false
             }
           }
         ]
@@ -117,19 +118,13 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              // minimize: true,
+              minimize: false,
               sourceMap: true,
             }
           },
 
           //CSS-LOADER
-          {
-            loader: 'css-loader',
-            options: {
-              // minimize: true, 
-              sourceMap: true,
-            }
-          },
+            'css-loader',
 
           //POSTCSS-LOADER
           {
@@ -145,7 +140,7 @@ module.exports = {
 
 
           //RESOLVE-URL-LOADER
-          'resolve-url-loader',
+          // 'resolve-url-loader',
 
           //SASS-LOADER
           {
@@ -160,7 +155,7 @@ module.exports = {
 
       //IMÁGENES-> FILE-LOADER, (NO IMAGE-WEBPACK-LOADER)
       {
-        test: /\.(png|svg|jpe?g|gif|svg|webp)$/, //manejo de IMÁGEMES con FILE-LOADER
+        test: /\.(png|svg|jpe?g|gif|svg|webp)$/i, //manejo de IMÁGEMES con FILE-LOADER
         use: [
           //FILE-LOADER
           {
@@ -174,6 +169,7 @@ module.exports = {
               // (-) outputPath: '../assetsDist/imgDist',       //lugar de reemplazo respecto OUTPUT.PATH 
               // (-) name: '[path][name].[ext]', // path mantiene estructura respecto FILE-LOADER.CONTEXT
               name: 'assets/[name].[ext]',
+              publicPath: './assets/'
               // (-) publicPath: 'assetsDist/imgDist/'       //lugar en el server/navegador respecto '/
             }
           },
@@ -243,7 +239,7 @@ module.exports = {
       chunks: ['js'],
       minify: {
         html5: true,  //sigue especificación html5
-        collapseWhitespace: true,
+        collapseWhitespace: false,
         caseSensitive: true,
         removeComments: false
       },

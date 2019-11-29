@@ -2,24 +2,74 @@
 //IMPORTACIONES
 //--------------
 
+//FIREBASE
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
+import 'firebase/storage'
+// //configuración Firebase
+// import './js/config'
+
+//SCSS
+import styles from './scss/main.scss'
+
+//IMGS
+import svgLogo from './img/logo.svg'
+
+//TPLs
+import tplHome from './views/home.tpl.html'
+import tplAbout from './views/about.tpl.html';
+import tplContact from './views/contact.tpl.html'
+import tplAdmin from './views/admin.tpl.html'
+import tplAdminAuthHome from './views/admin_auth.tpl.html'
+
+
+const d = document,
+ main = d.querySelector('.Main'),
+ footerYear = d.querySelector('.Footer-year')
+
+footerYear.textContent = new Date().getFullYear();
+
+d.addEventListener('DOMContentLoaded', e => {
+  main.innerHTML = tplHome;
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*          # PROYECTO ANTERIOR          
+DESCRIPCIÓN: */
+
 
 //IMPORTACIÓN DE NODE_MODULES 
-import _ from 'lodash'; //para poder leer `_.join...`
+// (-)import _ from 'lodash'; //para poder leer `_.join...`
 
 //IMPORTACIÓN DE MÓDULOS
-import printMe from './js/modules/print.js';
-import { module01 } from './js/modules/module01.js';
+// import printMe from './js/modules/print.js';
+// import { module01 } from './js/modules/module01.js';
 
 //IMPORTACIÓN HTML
-import index from './views/index.html'
+// import index from './views/index.html'
 
 //IMPORTACIÓN SCSS
-import main from './scss/main.scss'
+// import main from './scss/main.scss'
 
 //IMPORTACIÓN IMÁGENES
-import Icon from './assets/img/icon.png';
-import Icon2 from './assets/img/icon2.png';
-import Icon1_blog from './assets/img/blog/icon1-blog.png';
+// import Icon from './assets/img/icon.png';
+// import Icon2 from './assets/img/icon2.png';
+// import Icon1_blog from './assets/img/blog/icon1-blog.png';
 
 
 //FUNCIONES
@@ -69,5 +119,5 @@ console.log(module01.e);  //2.71828
 console.log(module01.log2);  //0.301029995663981
 
 //Este JS principal, cargamos un div con un contenido (procede de la función anterior) en el documento que lo incorporte (en este caso, el `index.html`)
-document.getElementById('main').appendChild(component());
+// (-) document.getElementById('main').appendChild(component());
 

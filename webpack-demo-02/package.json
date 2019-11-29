@@ -8,7 +8,7 @@
     "build": "rimraf dist && webpack --mode development",
     "build-prod": "rimraf dist && webpack --mode production",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --mode development --open"
+    "start": "webpack-dev-server --mode development --open --port 9000"
   },
   "keywords": [],
   "author": "",
