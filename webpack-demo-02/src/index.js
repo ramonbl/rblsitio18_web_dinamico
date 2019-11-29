@@ -14,7 +14,7 @@ import 'firebase/storage'
 import styles from './scss/main.scss'
 
 //IMGS
-import svgLogo from './img/logo.svg'
+// import pngLogo from './img/logo.png'
 
 //TPLs
 import tplHome from './views/home.tpl.html'
@@ -76,47 +76,47 @@ DESCRIPCIÓN: */
 //-----------
 
 //FUNCIÓN component(): crea un elemento `<div>` con un contenido de texto
-function component() {
-  const element = document.createElement('div');
+// function component() {
+//   const element = document.createElement('div');
  
-  const h2 = document.createElement('h2');
-  h2.innerHTML = _.join(['Sección generada en JS en el index.js']);
-  h2.classList.add('hello');
-  element.appendChild(h2);
+//   const h2 = document.createElement('h2');
+//   h2.innerHTML = _.join(['Sección generada en JS en el index.js']);
+//   h2.classList.add('hello');
+//   element.appendChild(h2);
 
-  const p = document.createElement('p');
-  p.innerHTML = _.join(['Esto es un párrafo generado en index.js']);
-  p.classList.add('hello');
-  element.appendChild(p);
+//   const p = document.createElement('p');
+//   p.innerHTML = _.join(['Esto es un párrafo generado en index.js']);
+//   p.classList.add('hello');
+//   element.appendChild(p);
 
-  const myIcon = new Image();
-  myIcon.src = Icon
-  element.appendChild(myIcon);
+//   const myIcon = new Image();
+//   myIcon.src = Icon
+//   element.appendChild(myIcon);
 
-  const btn = document.createElement('button');
-  btn.innerHTML = 'Click me y chequea la consola2!';
-  btn.onclick = printMe;
+//   const btn = document.createElement('button');
+//   btn.innerHTML = 'Click me y chequea la consola2!';
+//   btn.onclick = printMe;
 
-  element.appendChild(btn);
+//   element.appendChild(btn);
 
-  return element;
-}
+//   return element;
+// }
 
 //FUNCIÓN MiValidateEmail(correo)
-function miValidateEmail(correo){
-  let validado = module01.validateEmail(correo);
-  console.log(validado);
-  if (validado===true) {
-    return "El email es correcto";
-  }
-  else return "El email no es correcto";
-}
+// function miValidateEmail(correo){
+//   let validado = module01.validateEmail(correo);
+//   console.log(validado);
+//   if (validado===true) {
+//     return "El email es correcto";
+//   }
+//   else return "El email no es correcto";
+// }
 
 //OUPUT
 //-----------
-console.log(module01.pi);  //3.14
-console.log(module01.e);  //2.71828
-console.log(module01.log2);  //0.301029995663981
+// console.log(module01.pi);  //3.14
+// console.log(module01.e);  //2.71828
+// console.log(module01.log2);  //0.301029995663981
 
 //Este JS principal, cargamos un div con un contenido (procede de la función anterior) en el documento que lo incorporte (en este caso, el `index.html`)
 // (-) document.getElementById('main').appendChild(component());

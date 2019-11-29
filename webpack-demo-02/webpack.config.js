@@ -1,12 +1,15 @@
 
-//constantes necearias para el module.exports
+//CONSTANTES NECESARIAS PARA module.exports
+//#region 
 const path = require('path');
 var glob = require('glob')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
-// const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+//#endregion
+
 
 module.exports = {
 
@@ -15,12 +18,18 @@ module.exports = {
   //CONTEXT: Ruta absoluta con el directorio base para resolver los ENTRYs y LOADERs desde la configuración
   // (-) context: path.resolve(__dirname, 'src'),   //elijo el que tengo los bundless principales
 
+  //-----------------------------------------------------------------------------------
+
   //ENTRYs: Puntos en los que empezar el proceso de empaquetamiento respecto al `context`
+
   entry: {
-    index: './src/index.js',
+    js: './src/index.js',
   },
 
+  //-----------------------------------------------------------------------------------
+
   //OUTPUTs: Indican cómo y dónde generar los bundlets y assets asociados
+
   output: {
     // (-) path: path.resolve(__dirname, 'dist/jsDist'),
     filename: '[name].[chunkhash].js',
@@ -28,29 +37,36 @@ module.exports = {
     // publicPath: '/jsDist/'
   },
 
+  //-----------------------------------------------------------------------------------
+
   //HERRAMIENTAS
+
   devtool: 'source-map',  //herramienta para los source-maps
 
-  // devServer: { // (-)
-  //   // (-) publicPath: '/jsDist/',  //decir dnd están los bundles respecto a la salida (dist)
-  //   // publicPath: '/', 
-  //   // contentBase: path.join(__dirname, 'dist'), //decir a servidor de donde coger la información. solo para archivos estáticos 
-  //   // compress: true,
-  //   port: 9000,
-  //   // index: 'index.html',  //archivo considerado el índice
-  //   liveReload: true,
-  //   // open: true,
-  //   // writeToDisk: true, //si queremos que escriba en disco (en lugar de guardar en cachó haciéndolo más lento)
-  // },
 
+  devServer: { // (-)
+    // (-) publicPath: '/jsDist/',  //decir dnd están los bundles respecto a la salida (dist)
+    // contentBase: path.join(__dirname, 'dist'), //decir a servidor de donde coger la información. solo para archivos estáticos 
+    // compress: true,
+    port: 9000,
+    // index: 'index.html',  //archivo considerado el índice
+    // liveReload: true,
+    // open: true,
+    // writeToDisk: true, //si queremos que escriba en disco (en lugar de guardar en cachó haciéndolo más lento)
+  },
 
+  //-----------------------------------------------------------------------------------
 
   //OPTIMIZATION: divide los bundles, incluso los que estén compartidos
+  //#region 
   // optimization: {
   //   splitChunks: {
   //     chunks: 'all',
   //   },
   // },
+  //#endregion
+
+  //-----------------------------------------------------------------------------------
 
   module: {
     rules: [
@@ -58,11 +74,14 @@ module.exports = {
       //BABEL-LOADER
       {
         test: /\.m?js$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
       },
 
+      //-----------------------------------------------------------------------------------
+
       //TPL-HTML -> ES6-TEMPLATE-STRING: llamar a html desde html, trabajar con las template-string de JS para poder interpolar variables, valores y cadenas estáticas
+
       {
         test: /\.tpl.html$/,  //serán como los partials. Así Wpack no se confunde con los html
         use: [
@@ -72,26 +91,31 @@ module.exports = {
         ]
       },
 
+      //-----------------------------------------------------------------------------------
+
       // (-) HTML-> FILE-LOADER 
-      {
-        // test: /\.html$/, //manejo de HTML con FILE-LOADER
-        // use: [
-        //   {
-        //     loader: 'file-loader',
-        //     options: {
+      //#region 
+      // {
+      //   test: /\.html$/, //manejo de HTML con FILE-LOADER
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: {
 
-        //       //FILE-LOADER.CONTEXT
-        //       context: path.resolve(__dirname, 'src/views'), // contexto para las assets (el path depende del contexto)
+      //         //FILE-LOADER.CONTEXT
+      //         context: path.resolve(__dirname, 'src/views'), // contexto para las assets (el path depende del contexto)
 
-        //       //DESTINO
-        //       outputPath: '../',       //lugar de reemplazo respecto OUTPUT.PATH
-        //       name: '[path][name].[ext]', // path mantiene estructura respecto FILE-LOADER.CONTEXT
-        //       publicPath: '.'       //lugar en el server/navegador respecto '/' (siempre igual que outputPath?)
-        //     }
-        //   }
+      //         //DESTINO
+      //         outputPath: '../',       //lugar de reemplazo respecto OUTPUT.PATH
+      //         name: '[path][name].[ext]', // path mantiene estructura respecto FILE-LOADER.CONTEXT
+      //         publicPath: '.'       //lugar en el server/navegador respecto '/' (siempre igual que outputPath?)
+      //       }
+      //     }
 
-        // ],
-      },
+      //   ],
+      // },
+      //#endregion
+      //-----------------------------------------------------------------------------------
 
       //HTML-LOADER
       {
@@ -100,11 +124,13 @@ module.exports = {
           {
             loader: 'html-loader',
             options: {
-              minimize: false
+              // minimize: true
             }
           }
         ]
       },
+
+      //-----------------------------------------------------------------------------------
 
       //CSS-LOADERS
       {
@@ -118,13 +144,19 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              minimize: false,
+              // minimize: true,
               sourceMap: true,
             }
           },
 
           //CSS-LOADER
-            'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              // minimize: true, 
+              sourceMap: true,
+            }
+          },
 
           //POSTCSS-LOADER
           {
@@ -140,7 +172,7 @@ module.exports = {
 
 
           //RESOLVE-URL-LOADER
-          // 'resolve-url-loader',
+          'resolve-url-loader',
 
           //SASS-LOADER
           {
@@ -153,42 +185,49 @@ module.exports = {
         ],
       },
 
+      //-----------------------------------------------------------------------------------
+
       //IMÁGENES-> FILE-LOADER, (NO IMAGE-WEBPACK-LOADER)
       {
-        test: /\.(png|svg|jpe?g|gif|svg|webp)$/i, //manejo de IMÁGEMES con FILE-LOADER
+        test: /\.(png|svg|jpe?g|gif|svg|webp)$/, //manejo de IMÁGEMES con FILE-LOADER
         use: [
+          'file-loader?name=assets/[name].[ext]',
           //FILE-LOADER
-          {
-            loader: 'file-loader',
-            options: {
+          // {
+          //   loader: 'file-loader',
+          //   options: {
+          //     name: 'assets/[name].[ext]',
 
-              //FILE-LOADER.CONTEXT
-              // (-) context: path.resolve(__dirname, 'src/assets/img'), // contexto para las assets (el path depende del contexto)
+          //     //#region ANTIGUA
+          //     //FILE-LOADER.CONTEXT
+          //     // (-) context: path.resolve(__dirname, 'src/assets/img'), // contexto para las assets (el path depende del contexto)
 
-              //DESTINO
-              // (-) outputPath: '../assetsDist/imgDist',       //lugar de reemplazo respecto OUTPUT.PATH 
-              // (-) name: '[path][name].[ext]', // path mantiene estructura respecto FILE-LOADER.CONTEXT
-              name: 'assets/[name].[ext]',
-              publicPath: './assets/'
-              // (-) publicPath: 'assetsDist/imgDist/'       //lugar en el server/navegador respecto '/
-            }
-          },
+          //     //DESTINO
+          //     // (-) outputPath: '../assetsDist/imgDist',       //lugar de reemplazo respecto OUTPUT.PATH 
+          //     // (-) name: '[path][name].[ext]', // path mantiene estructura respecto FILE-LOADER.CONTEXT
+              
+          //     // (-) publicPath: 'assetsDist/imgDist/'       //lugar en el server/navegador respecto '/
+          //     //#endregion
+          //   }
+          // },
 
-          // IMAGE-WEBPACK-LOADER
+          // (-)IMAGE-WEBPACK-LOADER
+          //#region 
           // {
           //   loader: 'image-webpack-loader',
           //   options: {
           //     bypassOnDebug: true
           //   }
           // }
+          //#endregion
         ],
       },
 
-
+      //-----------------------------------------------------------------------------------
 
       //FONTS + MEDIA + DOCS -> FILE-LOADER
       {
-        test: /\.(woff|woff2|eot|ttf|otf|mp4|mp3|txt|xml|pdf)$/, 
+        test: /\.(woff|woff2|eot|ttf|otf|mp4|mp3|txt|xml|pdf)$/,
         use: [
           {
             loader: 'file-loader',
@@ -215,12 +254,13 @@ module.exports = {
         // ],
       },
 
-      
-
     ],
   },
+
+  //-----------------------------------------------------------------------------------
+
   //PLUGINS
-  plugins: [ 
+  plugins: [
 
     //CLEAN-WEBPACK-PLUGIN
     // new CleanWebpackPlugin(['dist/**/*.*']),
@@ -234,8 +274,8 @@ module.exports = {
     //HTML-WEBPACK-PLUGIN (solo una instancia xq solo tengo una entrada)
     new HtmlWebpackPlugin({
       template: './src/template.html',
-      filename: 'index.html', 
-    //   (-) hash: true,    //genera un hash
+      filename: 'index.html',
+      //   (-) hash: true,    //genera un hash
       chunks: ['js'],
       minify: {
         html5: true,  //sigue especificación html5
@@ -243,7 +283,7 @@ module.exports = {
         caseSensitive: true,
         removeComments: false
       },
-    // (-) templateParameters: {titulo: 'Manual de Webpack',encabezamiento: 'Aprendo Webpack'}
+      // (-) templateParameters: {titulo: 'Manual de Webpack',encabezamiento: 'Aprendo Webpack'}
     }),
   ],
 }
